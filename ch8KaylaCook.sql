@@ -61,11 +61,12 @@ FROM crimes
 WHERE classification = 'M' AND status = 'IA';
 
 /*CH 8 Problem 10 */
+/* NOTE: The original version of this "project" has the wrong answer for Problem 10. The correct answer is below. */
 /* List all crime charges with a balance owed. List the charge ID, crime ID, fine amount, court fee, amount paid, and amount owed. */
-SELECT charge_ID, crime_ID, fine_amount, court_fee, amount_paid, 
-fine_amount + court_fee - amount_paid AS "Amount Owed"
+SELECT charge_ID, crime_ID, fine_amount, court_fee, amount_paid, (fine_amount+court_fee-amount_paid) as Owed
 FROM crime_charges
-WHERE "Amount Owed" > 0;
+WHERE (fine_amount+court_fee-amount_paid) > 0
+ORDER BY Owed desc;
 
 /*CH 8 Problem 11 */
 /* List all police officers who are assigned to the precinct OCVW or GHNT and have a status of active. List the officer ID, last name, precinct, and status. Sort the list by precint and then by officer last name. */
